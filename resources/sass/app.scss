@@ -1,0 +1,44 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+body {
+    padding-top: 60px;
+}
+
+.sort {
+    cursor: pointer;
+    color: silver;
+
+    &.active {
+        color: #212529;
+    }
+}
+
+.page-title {
+    border-bottom: 1px solid silver;
+    padding-bottom: 10px;
+
+    h1 {
+        font-size: 140%;
+        font-weight: normal;
+        text-transform: capitalize;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    small, a {
+        font-size: 95%;
+        color: #252323b0;
+        text-decoration: none;
+    }
+
+    a {
+        font-style: italic;
+        font-weight: bold;
+    }
+}
+
+table {
+    tr.show-comments {
+        border-bottom: 1px solid #fff;
+    }
+}
