@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function(){
 
 /*
  * Front routes refers to unauthenticated user
+ * App\Http\Middleware\RedirectIfAuthenticated is responsible for protecting access
  */
 use App\Http\Controllers\Auth\AuthController;
 Route::middleware('guest')->group(function(){
