@@ -1,16 +1,17 @@
 # Favorite Countries
 
-Favorite Countries app will fetch countries from [restcountries](https://restcountries.eu) and allow a user to mark them as favorite or store comments for favorite countries
+Favorite Countries app will fetch countries from [restcountries](https://restcountries.eu) and allow a user to mark them as favorite or store comments for favorite countries.
 
 ## Technologies
 
-- PHP (Laravel).
-- JavaScript (VueJS).
-- Database (MySQL).
+- PHP (Laravel)
+- JavaScript (VueJS / Axios)
+- Database (MySQL)
+- HTML/CSS (Bootstrap / Custom small scss modifications).
 
-## Learning Laravel
+## Install
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Download .zip file or use git to clone repository
 
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
