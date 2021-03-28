@@ -11,9 +11,13 @@ Favorite Countries app will fetch countries from [restcountries](https://restcou
 
 ## Install
 
-- Download app as zip file or use git to clone repository
-- Navigate to the root path of extracted/cloned folder and run ***composer install*** to install dependencies and ***composer dump-autoload*** to autoload PHP files
+- Download app as zip file or use git to clone repository.
+- Navigate to the root path of extracted/cloned folder.
+- Run ***composer install*** to install dependencies and ***composer dump-autoload*** to autoload PHP files.
 - If running on Linux web server user (most likely *www-data* if server is *apache*) should have read/write permissions to *storage* folder.
+- Rename *.env.example* to *.env* and update file with database name, user and password.
+- Run ***php artisan migrate:refresh --seed*** to install database.
+- Open application in browser and login with default user: *username: admin* *password: password*.
 
 ## Development
 
