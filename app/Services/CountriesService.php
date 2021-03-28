@@ -68,7 +68,11 @@ class CountriesService
       try {
         $this->response = Http::timeout($this->timeout)->get($this->url . "/all?fields=name;region;population");
       } catch (\Exception $e) {
-        request()->session()->flash('alert_info', __('Unable to fetch data from restcountries.eu.') . " " . $e->getMessage());
+        $message = __('Unable to fetch data from restcountries.eu.');
+        if (config('app.debug')) {
+          $message .= " " . $e->getMessage();
+        }
+        request()->session()->flash('alert_info', $message);
         return [];
       }
 
