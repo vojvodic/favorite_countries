@@ -17,7 +17,7 @@ Favorite Countries app will fetch countries from [restcountries](https://restcou
 - If running on Linux web server user (most likely *www-data* if server is *apache*) should have read/write permissions to *storage* folder.
 - Rename *.env.example* to *.env* and update file with database name, user and password.
 - Run ***php artisan migrate:refresh --seed*** to install database.
-- Open application in browser and login with default user: *username: admin* *password: password*.
+- Open application in browser and login with default user - ***username:*** *admin* and ***password:*** *password*.
 
 ## Development
 
