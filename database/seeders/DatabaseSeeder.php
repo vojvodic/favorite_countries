@@ -16,8 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        /* Add default user */
         DB::insert('INSERT INTO users (username,password,updated_at,created_at)
-                         VALUES (?,?,?,?)',['user',Hash::make('user'),Carbon::now(),Carbon::now()]);
+                         VALUES (?,?,?,?)',['admin',Hash::make('password'),Carbon::now(),Carbon::now()]);
+        /* Add default settings */
         DB::insert('INSERT INTO settings (label,value)
                          VALUES (?,?)',['cache_countries','off']);
     }
