@@ -8,7 +8,7 @@
         <div class="card-body">
           <h5 class="card-title text-center mb-3">{{ __('Login') }}</h5>
           @include('partials.alerts')
-          <form class="" action="{{ route('auth.post_login') }}" method="post">
+          <form action="{{ route('auth.post_login') }}" method="post">
             @csrf
             <div class="mb-3">
               <label for="username" class="form-label">{{ __('Username') }}</label>

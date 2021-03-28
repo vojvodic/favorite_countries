@@ -21,18 +21,18 @@
                 <tr v-show="( country.name.toUpperCase().includes(search.toUpperCase()) )" :class="{ 'show-comments': isActive(index) }">
                   <td>
                     <button type="button" class="btn btn-light btn-sm" :title="labels.comments" @click="setActive(index)">
-                      <i class="bi bi-chat-text"></i> {{ country.country_comments.length }}
+                      <i class="bi bi-chat-text"></i> {{ country.comments.length }}
                     </button>
                     {{ country.name }}
                   </td>
                   <td>{{ country.region }}</td>
                   <td>{{ country.population }}</td>
                   <td>
-                      <button type="button" class="btn btn-outline-danger btn-sm" @click="removeFavorite(index)">{{ labels.remove }}</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" @click="removeFavorite(index)">{{ labels.remove }}</button>
                   </td>
                 </tr>
-                <tr v-show="( isActive(index) )">
-                  <td colspan="4" class="pb-">
+                <tr v-show="( isActive(index) && country.name.toUpperCase().includes(search.toUpperCase()) )">
+                  <td colspan="4" class="p-3">
                     <div class="row">
                       <div class="col-xs-6 col-sm-4">
                         <div class="form-group mb-3">
@@ -45,16 +45,14 @@
                       <div class="col-xs-6 col-sm-8">
                         <p>
                           {{ labels.comments }}
-                          <small v-show="!country.country_comments.length" class="text-muted d-block">
+                          <small class="text-muted" :class="(country.comments.length == 0 ? 'd-block' : 'd-none')">
                             {{ labels.no_comments }}
                           </small>
                         </p>
-                        <table class="table">
-                          <tr v-for="(comment,index) in country.country_comments">
-                            <td>{{ comment }}</td>
-                            <td>{{ comment.created_at }}</td>
-                          </tr>
-                        </table>
+                        <p v-for="(comment,index) in country.comments" class="comment">
+                          <i>{{ comment.comment }}</i>
+                          <small class="d-block text-muted">{{ comment.created_at }}</small>
+                        </p>
                       </div>
                     </div>
                   </td>
@@ -116,7 +114,9 @@
       addComment: function(index){
         let country = this.favoriteCountries[index];
         axios.post(config.baseUrl + '/favorites/' + country.id + '/comments',{comment : country.new_comment_value}).then(response => {
-          this.favoriteCountries.country_comments.push(response.data);
+          this.favoriteCountries[index].comments.unshift( response.data.comment );
+          country.new_comment_value = '';
+          this.$set(this.favoriteCountries, index, country);
         }).catch(error => {
           if (error.response) {
             alert( error.response.data.message );

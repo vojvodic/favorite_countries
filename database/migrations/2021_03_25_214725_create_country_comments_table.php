@@ -16,7 +16,7 @@ class CreateCountryCommentsTable extends Migration
         Schema::create('country_comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('country_id');
-            $table->text('description');
+            $table->text('comment');
             $table->timestamps();
 
             $table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('cascade');;

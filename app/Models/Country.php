@@ -12,7 +12,7 @@ class Country extends Model
     /**
      * Get the comments for country
      */
-    public function countryComments()
+    public function comments()
     {
         return $this->hasMany(CountryComment::class);
     }

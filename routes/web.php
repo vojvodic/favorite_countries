@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
  * App\Http\Middleware\Authenticate is responsible for protecting access
  */
 
-use App\Http\Controllers\Back\CountryCommentController;
+use App\Http\Controllers\Back\SettingsController;
 use App\Http\Controllers\Back\CountryController;
 use App\Http\Controllers\Back\LogoutController;
 Route::middleware('auth')->group(function(){
@@ -27,7 +27,10 @@ Route::middleware('auth')->group(function(){
     Route::post('/favorites', [CountryController::class, 'store'])->name('back.countries.store');
     Route::delete('/favorites/{id}', [CountryController::class, 'delete'])->name('back.countries.delete');
 
-    Route::post('/favorites/{id}/comments', [CountryCommentController::class, 'store'])->name('back.countries.comment.store');
+    Route::post('/favorites/{id}/comments', [CountryController::class, 'storeComment'])->name('back.countries.comment.store');
+
+    Route::get('/settings', [SettingsController::class, 'index'])->name('back.settings.index');
+    Route::post('/settings', [SettingsController::class, 'update'])->name('back.settings.update');
 
     Route::get('/logout', [LogoutController::class, 'logout'])->name('back.logout');
 });

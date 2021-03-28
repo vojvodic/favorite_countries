@@ -12,7 +12,7 @@
 
 @if(session()->has('alert_info'))
   <div class="alert alert-info">
-    {{ session()->get('info_message') }}
+    {{ session()->get('alert_info') }}
   </div>
 @endif
 

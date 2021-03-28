@@ -12,6 +12,9 @@
         <li class="nav-item">
            <a class="nav-link" href="{{ route('back.countries.favorites') }}">{{ __('Favorites') }}</a>
         </li>
+        <li class="nav-item">
+           <a class="nav-link" href="{{ route('back.settings.index') }}">{{ __('Settings') }}</a>
+        </li>
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">

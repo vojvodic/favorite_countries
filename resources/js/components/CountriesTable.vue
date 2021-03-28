@@ -12,7 +12,6 @@
             <tr>
               <th v-for="header in headers" scope="col">
                 {{ header.label }}
-                <i class="bi bi-sort-up sort"></i>
               </th>
               <th scope="col" style="width: 5%;"></th>
             </tr>
@@ -43,11 +42,7 @@
     data: function() {
       return {
         unfavoriteCountries: [],
-        search: '',
-        sort: {
-          name: 'name',
-          order: 'asc'
-        }
+        search: ''
       }
     },
     created: function(){

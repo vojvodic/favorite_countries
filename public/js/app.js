@@ -4971,7 +4971,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     favoriteCountries: Array,
@@ -4982,11 +4981,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       unfavoriteCountries: [],
-      search: '',
-      sort: {
-        name: 'name',
-        order: 'asc'
-      }
+      search: ''
     };
   },
   created: function created() {
@@ -5041,8 +5036,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
 //
 //
 //
@@ -5169,7 +5162,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(config.baseUrl + '/favorites/' + country.id + '/comments', {
         comment: country.new_comment_value
       }).then(function (response) {
-        _this3.favoriteCountries.country_comments.push(response.data);
+        _this3.favoriteCountries[index].comments.unshift(response.data.comment);
+
+        country.new_comment_value = '';
+
+        _this3.$set(_this3.favoriteCountries, index, country);
       })["catch"](function (error) {
         if (error.response) {
           alert(error.response.data.message);
@@ -27804,9 +27801,8 @@ var render = function() {
                     _vm._v(
                       "\n              " +
                         _vm._s(header.label) +
-                        "\n              "
-                    ),
-                    _c("i", { staticClass: "bi bi-sort-up sort" })
+                        "\n            "
+                    )
                   ])
                 }),
                 _vm._v(" "),
@@ -27990,7 +27986,7 @@ var render = function() {
                             _c("i", { staticClass: "bi bi-chat-text" }),
                             _vm._v(
                               " " +
-                                _vm._s(country.country_comments.length) +
+                                _vm._s(country.comments.length) +
                                 "\n                  "
                             )
                           ]
@@ -28031,15 +28027,20 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm.isActive(index),
-                          expression: "( isActive(index) )"
+                          value:
+                            _vm.isActive(index) &&
+                            country.name
+                              .toUpperCase()
+                              .includes(_vm.search.toUpperCase()),
+                          expression:
+                            "( isActive(index) && country.name.toUpperCase().includes(search.toUpperCase()) )"
                         }
                       ]
                     },
                     [
                       _c(
                         "td",
-                        { staticClass: "pb-", attrs: { colspan: "4" } },
+                        { staticClass: "p-3", attrs: { colspan: "4" } },
                         [
                           _c("div", { staticClass: "row" }, [
                             _c("div", { staticClass: "col-xs-6 col-sm-4" }, [
@@ -28102,55 +28103,52 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-xs-6 col-sm-8" }, [
-                              _c("p", [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(_vm.labels.comments) +
-                                    "\n                        "
-                                ),
-                                _c(
-                                  "small",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "show",
-                                        rawName: "v-show",
-                                        value: !country.country_comments.length,
-                                        expression:
-                                          "!country.country_comments.length"
-                                      }
-                                    ],
-                                    staticClass: "text-muted d-block"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                          " +
-                                        _vm._s(_vm.labels.no_comments) +
-                                        "\n                        "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "table",
-                                { staticClass: "table" },
-                                _vm._l(country.country_comments, function(
+                            _c(
+                              "div",
+                              { staticClass: "col-xs-6 col-sm-8" },
+                              [
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                        " +
+                                      _vm._s(_vm.labels.comments) +
+                                      "\n                        "
+                                  ),
+                                  _c(
+                                    "small",
+                                    {
+                                      staticClass: "text-muted",
+                                      class:
+                                        country.comments.length == 0
+                                          ? "d-block"
+                                          : "d-none"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                          " +
+                                          _vm._s(_vm.labels.no_comments) +
+                                          "\n                        "
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(country.comments, function(
                                   comment,
                                   index
                                 ) {
-                                  return _c("tr", [
-                                    _c("td", [_vm._v(_vm._s(comment))]),
+                                  return _c("p", { staticClass: "comment" }, [
+                                    _c("i", [_vm._v(_vm._s(comment.comment))]),
                                     _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(comment.created_at))
-                                    ])
+                                    _c(
+                                      "small",
+                                      { staticClass: "d-block text-muted" },
+                                      [_vm._v(_vm._s(comment.created_at))]
+                                    )
                                   ])
-                                }),
-                                0
-                              )
-                            ])
+                                })
+                              ],
+                              2
+                            )
                           ])
                         ]
                       )
