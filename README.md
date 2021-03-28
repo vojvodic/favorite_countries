@@ -19,6 +19,7 @@ Favorite Countries app will fetch countries from [restcountries](https://restcou
 - Run ***php artisan key:generate*** to generate app key and ***php artisan config:cache*** to cache .env file changes.
 - Run ***php artisan migrate:refresh --seed*** to install database.
 - Open application in browser and login with default user - ***username:*** *admin* ***password:*** *password*.
+- You can use built in PHP web server for demo. Just run ***php artisan serve*** and visit provided url in you browser.
 
 ## Development
 
