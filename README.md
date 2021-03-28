@@ -11,10 +11,13 @@ Favorite Countries app will fetch countries from [restcountries](https://restcou
 
 ## Install
 
-- Download app as ZIP file or use git to clone repository
-- Navigate to the root path of extracted/cloned folder and run *composer install* to install dependencies and *composer dump-autoload* to autoload PHP files
+- Download app as zip file or use git to clone repository
+- Navigate to the root path of extracted/cloned folder and run ***composer install*** to install dependencies and ***composer dump-autoload*** to autoload PHP files
+- If running on Linux web server user (most likely *www-data* if server is *apache*) should have read/write permissions to *storage* folder.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Development
+
+- Assuming previous *Install* process completed run ***npm install*** to install *nodejs* dependencies.
 
 ## Laravel Sponsors
 
